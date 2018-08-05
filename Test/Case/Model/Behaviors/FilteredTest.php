@@ -76,7 +76,7 @@ class FilteredTestCase extends CakeTestCase
 				'DocumentCategory.id'	=> array('type' => 'select', 'filterField' => 'document_category_id', 'condition' => 'like', 'required' => false, 'selectOptions' => array()),
 				'Document.is_private'	=> array('type' => 'checkbox', 'label' => 'Private?', 'condition' => 'like', 'required' => false, 'selectOptions' => array())
 			);
-		$this->assertEquals($this->Document->Behaviors->Filtered->settings[$this->Document->alias], $expected);
+		$this->assertEquals($expected, $this->Document->Behaviors->Filtered->settings[$this->Document->alias]);
 	}
 
 	/**
@@ -91,7 +91,7 @@ class FilteredTestCase extends CakeTestCase
 			(
 				'Document.title'		=> array('type' => 'text', 'condition' => 'like', 'required' => false, 'selectOptions' => array()),
 			);
-		$this->assertEquals($this->Document->Behaviors->Filtered->settings[$this->Document->alias], $expected);
+		$this->assertEquals($expected, $this->Document->Behaviors->Filtered->settings[$this->Document->alias]);
 	}
 
 	/**
@@ -115,7 +115,7 @@ class FilteredTestCase extends CakeTestCase
 			);
 
 		$this->Document->setFilterValues($filterValues);
-		$this->assertEquals($this->Document->Behaviors->Filtered->_filterValues[$this->Document->alias], $filterValues);
+		$this->assertEquals($filterValues, $this->Document->Behaviors->Filtered->_filterValues[$this->Document->alias]);
 	}
 
 	/**
@@ -599,7 +599,6 @@ class FilteredTestCase extends CakeTestCase
 		$this->Document->setFilterValues($filterValues);
 		$result = $this->Document->find('all', array('joins' => $customJoin, 'recursive' => 1));
 		$this->assertEquals($expected, $result);
-		$arse = false;
 	}
 
 	/**
@@ -629,7 +628,7 @@ class FilteredTestCase extends CakeTestCase
 			);
 
 		$result = $this->Document->find('all', array('recursive' => -1, 'nofilter' => true));
-		$this->assertNotEqual($result, $expected);
+		$this->assertNotEquals($expected, $result);
 
 		$result = $this->Document->find('all', array('recursive' => -1, 'nofilter' => 'true'));
 		$this->assertEquals($expected, $result);
